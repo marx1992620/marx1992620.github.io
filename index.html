@@ -205,6 +205,93 @@ footer{border-top:1px solid var(--rule); padding-top:16px; font-family:var(--f-m
     </div>
   </section>
 
+  <!-- ============ 五種角色 ============ -->
+  <section>
+    <div class="sec-head">
+      <h2>五種角色能力</h2>
+      <span class="note">同一段經歷，依職能面向拆分</span>
+    </div>
+
+    <div class="quads">
+
+      <div class="quad" style="--c:var(--h1c); --w:var(--h1w)">
+        <p class="qk">數據分析＆AI建模 <span class="en">DA&amp;MLE</span></p>
+        <h3>模型指標達標，不等於客戶願意上線</h3>
+        <div class="chips">
+          <span class="chip">資料分析</span><span class="chip">特徵工程</span>
+          <span class="chip">模型訓練調優</span><span class="chip">風險策略設計</span>
+        </div>
+        <ul>
+          <li>客戶的實際風險在於誤攔正常交易，每一筆皆對應客訴與營收損失；據此將優化目標由 accuracy 調整為 <strong>precision</strong>，Precision <strong>+72.4%</strong>，ACC +5%、Recall +12.1%、AUC +36.9% 同步提升</li>
+          <li>逾時瓶頸來自<strong>特徵存取</strong>而非模型運算；重構風險評估之資料結構與存取路徑後，模型逾時率 <strong>−95%</strong></li>
+          <li><strong>經濟部智慧創新競賽第一名</strong>：即時信用卡交易與帳戶登入詐欺偵測，涵蓋盜刷與帳戶接管（ATO）</li>
+          <li>製造業期間之建模成果：品質預測準確率 88%、安全庫存與庫存成本 −69%、機台預測一年份運算 95hr→7min</li>
+        </ul>
+      </div>
+
+      <div class="quad" style="--c:var(--h2c); --w:var(--h2w)">
+        <p class="qk">數據工程 <span class="en">DE</span></p>
+        <h3>精簡鏈路層級，逾時歸零</h3>
+        <div class="chips">
+          <span class="chip">Pipeline 重構</span><span class="chip">串流處理</span>
+          <span class="chip">資料庫選型</span><span class="chip">資料治理</span>
+        </div>
+        <ul>
+          <li>資料流重構：DB→Debezium→Kafka→Logstash 改為 <strong>AP→Kafka→Flink→Doris</strong>，少兩層中介，逾時率 <strong>4.1% → 0%</strong></li>
+          <li>Redis <strong>list → zset</strong>（skip-list + hash），插入 O(N)→O(logN)，刪除耗時 125.6s → 2.1s；zset 與 RedisGraph 節點改非同步刪除</li>
+          <li>導入 <strong>DataHub</strong>：原欄位定義散於 schema、評分邏輯位於他表、權責記載於程式碼，建立資料目錄、字典、血緣圖與權限歸屬後，資料來源、演算法與負責人均可追溯，符合金融合規要求</li>
+          <li>Redis／MySQL／Doris／Lakehouse 逐項評估，依 <strong>OLTP 或 OLAP</strong> 之實際存取型態選型；分析型查詢改用 Doris 後處理效率明顯提升</li>
+        </ul>
+      </div>
+
+      <div class="quad" style="--c:var(--h3c); --w:var(--h3w)">
+        <p class="qk">系統維運 <span class="en">SE</span></p>
+        <h3>先界定優化範圍，再投入資源</h3>
+        <div class="chips">
+          <span class="chip">客戶端駐點</span><span class="chip">AWS 雲端服務</span>
+          <span class="chip">K8s 服務維運</span><span class="chip">壓力測試</span>
+        </div>
+        <ul>
+          <li>到職期間小主管、技術負責人、資料與系統工程師相繼離職，主動承接其負責之服務，重新釐清架構與資料流並將維運知識文件化；期間客戶端服務維持 <strong>0 中斷</strong>，並同步完成效能優化</li>
+          <li>雙 11 尖峰 <strong>TPS 150</strong>：Lua/EVALSHA、io-threads 調參、hash-slot keying 平衡圖節點、Predixy／HAProxy 讀寫分離，逾時 12.5% → 0.9%</li>
+          <li>JMeter 壓測拆解 <strong>RT 與 RTT</strong>，把優化切成模型內部／外部 IO／系統三層；搭配 KEDA 事件驅動擴縮容，TPS <strong>+137%</strong></li>
+          <li>Wipro 期間駐點客戶端：整合資料管線覆蓋率 <strong>99%</strong>，替 40+ 位工程師省下 50% ETL 與驗證工時</li>
+        </ul>
+      </div>
+
+      <div class="quad" style="--c:var(--h4c); --w:var(--h4w)">
+        <p class="qk">專案管理 <span class="en">PM</span></p>
+        <h3>以風險與成本說明方案，取得客戶採用</h3>
+        <div class="chips">
+          <span class="chip">客戶溝通</span><span class="chip">時程規劃</span>
+          <span class="chip">架構方案提案</span><span class="chip">銀行客戶對接</span>
+        </div>
+        <ul>
+          <li>提出<strong>雙站點 Active-Active</strong> 架構方案，逐層推導各資料層不同步對服務之實際影響：Redis 不同步致模型準確度下降、PostgreSQL 不同步致推論失準、Elasticsearch 不同步致監控與學習系統同時缺料，並逐項提出解法與成本評估</li>
+          <li>直接與國內外銀行客戶確認<strong>部署時程與驗收標準</strong>，把工程排程對齊客戶的上線窗口</li>
+          <li>與客戶共同訂定驗收標準，由單看模型指標改以<strong>可接受誤攔上限</strong>定義，模型自參考數據轉為線上攔阻決策依據</li>
+          <li>撰寫三份導入計畫書：AI 客服系統、資料治理架構、服務效能優化 Scope</li>
+        </ul>
+      </div>
+
+      <div class="quad" style="--c:var(--h5c); --w:var(--h5w)">
+        <p class="qk">AI團隊主管 <span class="en">Team Leader</span></p>
+        <h3>四種職能均具實作經驗，方能有效帶領</h3>
+        <div class="chips">
+          <span class="chip">跨職能團隊帶領</span><span class="chip">跨區管理</span>
+          <span class="chip">新產品規劃</span><span class="chip">商業利基點</span>
+        </div>
+        <ul>
+          <li>帶領涵蓋 <strong>DA、DE、AI、SE 四種職能</strong>之 AI Team，各職能之術語與交付節奏不同，須具備對應之溝通基礎；並管理上海跨區成員，曾帶領 SRE 團隊</li>
+          <li>建置 <strong>ai_risk_platform</strong> 風險分析平台，以自然語言查詢取代人工取數，兼顧資料治理與稽核軌跡，風險分析時間 <strong>−90%</strong>，並減少儀表板開發需求</li>
+          <li>撰寫 <strong>AI Agent 文字客服導入計畫</strong>，就文字與語音兩條路線比較技術難度、導入時程、法遵層級與 AI 失敗成本：語音涉及聲紋生物特徵且失敗成本高，文字可由人工無縫承接，據此決定優先導入文字</li>
+          <li>主導 Fintech AI 產品規劃與商業化，取得<strong>多項國際專利</strong>，建立國內外銀行合作關係</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+  
   <!-- ============ 技能 → 功績 ============ -->
   <section>
     <div class="sec-head">
@@ -307,93 +394,6 @@ footer{border-top:1px solid var(--rule); padding-top:16px; font-family:var(--f-m
           <div class="win"><span class="v">3 份</span><span class="d">導入計畫書：AI 客服系統、資料治理架構、服務效能優化 Scope</span></div>
           <div class="win"><span class="v">上線決策</span><span class="d">驗收標準改以「可接受誤攔上限」定義，模型由參考指標轉為線上攔阻決策依據</span></div>
         </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ 五種角色 ============ -->
-  <section>
-    <div class="sec-head">
-      <h2>五種角色能力</h2>
-      <span class="note">同一段經歷，依職能面向拆分</span>
-    </div>
-
-    <div class="quads">
-
-      <div class="quad" style="--c:var(--h1c); --w:var(--h1w)">
-        <p class="qk">數據分析＆AI建模 <span class="en">DA&amp;MLE</span></p>
-        <h3>模型指標達標，不等於客戶願意上線</h3>
-        <div class="chips">
-          <span class="chip">資料分析</span><span class="chip">特徵工程</span>
-          <span class="chip">模型訓練調優</span><span class="chip">風險策略設計</span>
-        </div>
-        <ul>
-          <li>客戶的實際風險在於誤攔正常交易，每一筆皆對應客訴與營收損失；據此將優化目標由 accuracy 調整為 <strong>precision</strong>，Precision <strong>+72.4%</strong>，ACC +5%、Recall +12.1%、AUC +36.9% 同步提升</li>
-          <li>逾時瓶頸來自<strong>特徵存取</strong>而非模型運算；重構風險評估之資料結構與存取路徑後，模型逾時率 <strong>−95%</strong></li>
-          <li><strong>經濟部智慧創新競賽第一名</strong>：即時信用卡交易與帳戶登入詐欺偵測，涵蓋盜刷與帳戶接管（ATO）</li>
-          <li>製造業期間之建模成果：品質預測準確率 88%、安全庫存與庫存成本 −69%、機台預測一年份運算 95hr→7min</li>
-        </ul>
-      </div>
-
-      <div class="quad" style="--c:var(--h2c); --w:var(--h2w)">
-        <p class="qk">數據工程 <span class="en">DE</span></p>
-        <h3>精簡鏈路層級，逾時歸零</h3>
-        <div class="chips">
-          <span class="chip">Pipeline 重構</span><span class="chip">串流處理</span>
-          <span class="chip">資料庫選型</span><span class="chip">資料治理</span>
-        </div>
-        <ul>
-          <li>資料流重構：DB→Debezium→Kafka→Logstash 改為 <strong>AP→Kafka→Flink→Doris</strong>，少兩層中介，逾時率 <strong>4.1% → 0%</strong></li>
-          <li>Redis <strong>list → zset</strong>（skip-list + hash），插入 O(N)→O(logN)，刪除耗時 125.6s → 2.1s；zset 與 RedisGraph 節點改非同步刪除</li>
-          <li>導入 <strong>DataHub</strong>：原欄位定義散於 schema、評分邏輯位於他表、權責記載於程式碼，建立資料目錄、字典、血緣圖與權限歸屬後，資料來源、演算法與負責人均可追溯，符合金融合規要求</li>
-          <li>Redis／MySQL／Doris／Lakehouse 逐項評估，依 <strong>OLTP 或 OLAP</strong> 之實際存取型態選型；分析型查詢改用 Doris 後處理效率明顯提升</li>
-        </ul>
-      </div>
-
-      <div class="quad" style="--c:var(--h3c); --w:var(--h3w)">
-        <p class="qk">系統維運 <span class="en">SE</span></p>
-        <h3>先界定優化範圍，再投入資源</h3>
-        <div class="chips">
-          <span class="chip">客戶端駐點</span><span class="chip">AWS 雲端服務</span>
-          <span class="chip">K8s 服務維運</span><span class="chip">壓力測試</span>
-        </div>
-        <ul>
-          <li>到職期間小主管、技術負責人、資料與系統工程師相繼離職，主動承接其負責之服務，重新釐清架構與資料流並將維運知識文件化；期間客戶端服務維持 <strong>0 中斷</strong>，並同步完成效能優化</li>
-          <li>雙 11 尖峰 <strong>TPS 150</strong>：Lua/EVALSHA、io-threads 調參、hash-slot keying 平衡圖節點、Predixy／HAProxy 讀寫分離，逾時 12.5% → 0.9%</li>
-          <li>JMeter 壓測拆解 <strong>RT 與 RTT</strong>，把優化切成模型內部／外部 IO／系統三層；搭配 KEDA 事件驅動擴縮容，TPS <strong>+137%</strong></li>
-          <li>Wipro 期間駐點客戶端：整合資料管線覆蓋率 <strong>99%</strong>，替 40+ 位工程師省下 50% ETL 與驗證工時</li>
-        </ul>
-      </div>
-
-      <div class="quad" style="--c:var(--h4c); --w:var(--h4w)">
-        <p class="qk">專案管理 <span class="en">PM</span></p>
-        <h3>以風險與成本說明方案，取得客戶採用</h3>
-        <div class="chips">
-          <span class="chip">客戶溝通</span><span class="chip">時程規劃</span>
-          <span class="chip">架構方案提案</span><span class="chip">銀行客戶對接</span>
-        </div>
-        <ul>
-          <li>提出<strong>雙站點 Active-Active</strong> 架構方案，逐層推導各資料層不同步對服務之實際影響：Redis 不同步致模型準確度下降、PostgreSQL 不同步致推論失準、Elasticsearch 不同步致監控與學習系統同時缺料，並逐項提出解法與成本評估</li>
-          <li>直接與國內外銀行客戶確認<strong>部署時程與驗收標準</strong>，把工程排程對齊客戶的上線窗口</li>
-          <li>與客戶共同訂定驗收標準，由單看模型指標改以<strong>可接受誤攔上限</strong>定義，模型自參考數據轉為線上攔阻決策依據</li>
-          <li>撰寫三份導入計畫書：AI 客服系統、資料治理架構、服務效能優化 Scope</li>
-        </ul>
-      </div>
-
-      <div class="quad" style="--c:var(--h5c); --w:var(--h5w)">
-        <p class="qk">AI團隊主管 <span class="en">Team Leader</span></p>
-        <h3>四種職能均具實作經驗，方能有效帶領</h3>
-        <div class="chips">
-          <span class="chip">跨職能團隊帶領</span><span class="chip">跨區管理</span>
-          <span class="chip">新產品規劃</span><span class="chip">商業利基點</span>
-        </div>
-        <ul>
-          <li>帶領涵蓋 <strong>DA、DE、AI、SE 四種職能</strong>之 AI Team，各職能之術語與交付節奏不同，須具備對應之溝通基礎；並管理上海跨區成員，曾帶領 SRE 團隊</li>
-          <li>建置 <strong>ai_risk_platform</strong> 風險分析平台，以自然語言查詢取代人工取數，兼顧資料治理與稽核軌跡，風險分析時間 <strong>−90%</strong>，並減少儀表板開發需求</li>
-          <li>撰寫 <strong>AI Agent 文字客服導入計畫</strong>，就文字與語音兩條路線比較技術難度、導入時程、法遵層級與 AI 失敗成本：語音涉及聲紋生物特徵且失敗成本高，文字可由人工無縫承接，據此決定優先導入文字</li>
-          <li>主導 Fintech AI 產品規劃與商業化，取得<strong>多項國際專利</strong>，建立國內外銀行合作關係</li>
-        </ul>
       </div>
 
     </div>
