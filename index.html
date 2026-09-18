@@ -101,12 +101,14 @@ svg{display:block; width:100%; height:auto}
 .chips{display:flex; flex-wrap:wrap; gap:5px}
 .chip{font-family:var(--f-mono); font-size:.68rem; padding:2px 7px; border-radius:2px;
   background:var(--acc-wash); color:var(--acc); white-space:nowrap}
-.arrow{font-family:var(--f-mono); font-size:.68rem; letter-spacing:.1em; color:var(--ink-faint); text-transform:uppercase}
-.wins{display:flex; flex-direction:column; gap:9px}
-.win{display:flex; gap:12px; align-items:baseline}
+.arrow{font-family:var(--f-mono); font-size:.66rem; letter-spacing:.1em; color:var(--ink-faint);
+  text-transform:uppercase; display:flex; align-items:center; gap:10px; margin-top:2px}
+.arrow::after{content:""; flex:1; height:1px; background:var(--rule-soft)}
+.wins{display:grid; grid-template-columns:max-content 1fr; column-gap:14px; row-gap:9px; align-items:baseline}
+.win{display:contents}
 .win .v{font-family:var(--f-mono); font-weight:700; font-size:.95rem; color:var(--met);
-  font-variant-numeric:tabular-nums; white-space:nowrap; min-width:96px; text-align:right}
-.win .d{font-size:.87rem; color:var(--ink-soft); flex:1}
+  font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right}
+.win .d{font-size:.87rem; color:var(--ink-soft)}
 
 /* ---- five roles ---- */
 .quads{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px}
@@ -296,7 +298,7 @@ footer{border-top:1px solid var(--rule); padding-top:16px; font-family:var(--f-m
   <section>
     <div class="sec-head">
       <h2>技能 → 功績對照</h2>
-      <span class="note">左列技術能力，右列對應之量化成果</span>
+      <span class="note">上為技術能力，下為對應之量化成果</span>
     </div>
 
     <div class="matrix">
